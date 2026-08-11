@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Input.ViewModels"
+        x:Class="Input.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Input teste aaaa"
+        Width="400" Height="200">
+    <StackPanel Margin="20" Spacing="12" VerticalAlignment="Center">
+        <TextBlock Text="{Binding StatusText}" FontSize="16" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
+            <Button Content="Iniciar" Command="{Binding StartCommand}"/>
+            <Button Content="Parar" Command="{Binding StopCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
