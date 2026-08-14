@@ -1,4 +1,4 @@
-.claude
-/bin
-/obj
-.vs/*
+.claude/
+bin/
+obj/
+.vs/
