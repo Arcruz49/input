@@ -1,0 +1,76 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ============================================================
+         Paleta da marca (mesma do site)
+           #F2F1EF  osso / fundo
+           #232323  tinta / texto e superfícies escuras
+           #2688A8  teal / ação
+         ============================================================ -->
+
+    <SolidColorBrush x:Key="Bone" Color="#F2F1EF" />
+    <SolidColorBrush x:Key="Ink" Color="#232323" />
+    <SolidColorBrush x:Key="Teal" Color="#2688A8" />
+
+    <!-- Superfícies -->
+    <SolidColorBrush x:Key="Surface" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="SurfaceSunken" Color="#EAE8E4" />
+    <SolidColorBrush x:Key="SurfaceHover" Color="#E6E4E0" />
+
+    <!-- Linhas -->
+    <SolidColorBrush x:Key="Line" Color="#DEDCD7" />
+    <SolidColorBrush x:Key="LineStrong" Color="#CBC8C2" />
+
+    <!-- Texto -->
+    <SolidColorBrush x:Key="TextPrimary" Color="#232323" />
+    <SolidColorBrush x:Key="TextSecondary" Color="#6E6C68" />
+    <SolidColorBrush x:Key="TextMuted" Color="#9A968F" />
+    <SolidColorBrush x:Key="TextOnDark" Color="#F2F1EF" />
+    <SolidColorBrush x:Key="TextOnDarkMuted" Color="#8A8A8A" />
+
+    <!-- Ação / teal -->
+    <SolidColorBrush x:Key="Accent" Color="#2688A8" />
+    <SolidColorBrush x:Key="AccentHover" Color="#2E9BBE" />
+    <SolidColorBrush x:Key="AccentPressed" Color="#1F7089" />
+    <SolidColorBrush x:Key="AccentSoft" Color="#2688A8" Opacity="0.10" />
+
+    <!-- Gravação: vermelho é o sinal universal de "rec" -->
+    <SolidColorBrush x:Key="Record" Color="#D64545" />
+    <SolidColorBrush x:Key="RecordHover" Color="#E15757" />
+    <SolidColorBrush x:Key="RecordSoft" Color="#D64545" Opacity="0.10" />
+
+    <SolidColorBrush x:Key="Success" Color="#2E9E6B" />
+    <SolidColorBrush x:Key="SuccessSoft" Color="#2E9E6B" Opacity="0.10" />
+    <SolidColorBrush x:Key="Danger" Color="#C4403F" />
+    <SolidColorBrush x:Key="DangerSoft" Color="#C4403F" Opacity="0.09" />
+
+    <!-- Fonte tabular do cronômetro, com fallbacks por plataforma. -->
+    <FontFamily x:Key="MonoFont">Cascadia Mono,JetBrains Mono,DejaVu Sans Mono,Consolas,Menlo,monospace</FontFamily>
+
+    <!-- ============================================================
+         Overrides do tema Fluent, pra que os controles nativos
+         nasçam já com a cara da marca.
+         ============================================================ -->
+    <SolidColorBrush x:Key="TextControlBackground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="#EAE8E4" />
+
+    <SolidColorBrush x:Key="TextControlBorderBrush" Color="#DEDCD7" />
+    <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="#CBC8C2" />
+    <SolidColorBrush x:Key="TextControlBorderBrushFocused" Color="#2688A8" />
+    <SolidColorBrush x:Key="TextControlBorderBrushDisabled" Color="#E4E2DE" />
+
+    <SolidColorBrush x:Key="TextControlForeground" Color="#232323" />
+    <SolidColorBrush x:Key="TextControlForegroundPointerOver" Color="#232323" />
+    <SolidColorBrush x:Key="TextControlForegroundFocused" Color="#232323" />
+    <SolidColorBrush x:Key="TextControlForegroundDisabled" Color="#A5A29B" />
+
+    <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="#A5A29B" />
+    <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#9A968F" />
+    <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="#9A968F" />
+    <SolidColorBrush x:Key="TextControlPlaceholderForegroundDisabled" Color="#BFBCB6" />
+
+    <SolidColorBrush x:Key="TextControlSelectionHighlightColor" Color="#2688A8" Opacity="0.28" />
+
+</ResourceDictionary>

@@ -2,14 +2,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Input.App"
              xmlns:local="using:Input"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             RequestedThemeVariant="Light">
 
     <Application.DataTemplates>
         <local:ViewLocator />
     </Application.DataTemplates>
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="avares://Input/Styles/Palette.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="avares://Input/Styles/Controls.axaml" />
     </Application.Styles>
 </Application>

@@ -3,13 +3,51 @@
         xmlns:vm="using:Input.ViewModels"
         x:Class="Input.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Title="Input teste aaaa"
-        Width="400" Height="200">
-    <StackPanel Margin="20" Spacing="12" VerticalAlignment="Center">
-        <TextBlock Text="{Binding StatusText}" FontSize="16" HorizontalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center">
-            <Button Content="Iniciar" Command="{Binding StartCommand}"/>
-            <Button Content="Parar" Command="{Binding StopCommand}"/>
-        </StackPanel>
-    </StackPanel>
+        Title="Input"
+        Width="400" Height="600"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource Bone}"
+        WindowDecorations="None">
+
+    <Grid RowDefinitions="36,*">
+
+        <Border Grid.Row="0"
+                Background="Transparent"
+                PointerPressed="OnTitleBarPointerPressed">
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,6,0">
+
+                <Button Classes="chrome"
+                        Click="OnMinimizeClick"
+                        ToolTip.Tip="Minimizar">
+                    <Path Data="M 0,0 H 10"
+                          StrokeThickness="1.3"
+                          StrokeLineCap="Round" />
+                </Button>
+
+                <Button Classes="chrome close"
+                        Click="OnCloseClick"
+                        ToolTip.Tip="Fechar">
+                    <Path Data="M 0,0 L 9,9 M 9,0 L 0,9"
+                          StrokeThickness="1.3"
+                          StrokeLineCap="Round" />
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <TransitioningContentControl Grid.Row="1"
+                                     Content="{Binding CurrentViewModel}">
+            <TransitioningContentControl.PageTransition>
+                <CrossFade Duration="0:0:0.22" />
+            </TransitioningContentControl.PageTransition>
+        </TransitioningContentControl>
+
+    </Grid>
+
 </Window>

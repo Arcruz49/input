@@ -1,63 +1,23 @@
-using System;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Input.Services;
+using Input.ViewModels;
 
 namespace Input.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private readonly RecordingOrchestrator _orchestrator;
+    private readonly LoginViewModel _loginViewModel;
+    private readonly RecordingViewModel _recordingViewModel;
 
     [ObservableProperty]
-    private bool _isRecording;
+    private ViewModelBase _currentViewModel;
 
-    [ObservableProperty]
-    private string _statusText = "Pronto pra gravar";
-
-    public MainWindowViewModel(RecordingOrchestrator orchestrator)
+    public MainWindowViewModel(LoginViewModel loginViewModel, RecordingViewModel recordingViewModel)
     {
-        _orchestrator = orchestrator;
-    }
+        _loginViewModel = loginViewModel;
+        _recordingViewModel = recordingViewModel;
 
-    [RelayCommand(CanExecute = nameof(CanStart))]
-    private void Start()
-    {
-        try
-        {
-            _orchestrator.Start();
-            IsRecording = true;
-            StatusText = "Gravando...";
-        }
-        catch (Exception ex)
-        {
-            StatusText = $"Erro ao iniciar: {ex.Message}";
-        }
-    }
+        _loginViewModel.LoginSucceeded += () => CurrentViewModel = _recordingViewModel;
 
-    private bool CanStart() => !IsRecording;
-
-    [RelayCommand(CanExecute = nameof(CanStop))]
-    private async Task Stop()
-    {
-        try
-        {
-            await _orchestrator.StopAsync();
-            IsRecording = false;
-            StatusText = "Gravação finalizada";
-        }
-        catch (Exception ex)
-        {
-            StatusText = $"Erro ao parar: {ex.Message}";
-        }
-    }
-
-    private bool CanStop() => IsRecording;
-
-    partial void OnIsRecordingChanged(bool value)
-    {
-        StartCommand.NotifyCanExecuteChanged();
-        StopCommand.NotifyCanExecuteChanged();
+        CurrentViewModel = _loginViewModel;
     }
 }

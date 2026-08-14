@@ -45,6 +45,14 @@ public partial class App : Application
         services.AddSingleton(_ => new SessionStore(paths.DatabasePath));
         services.AddSingleton(_ => new InputEventExporter(paths.DatabasePath));
         services.AddSingleton<RecordingOrchestrator>();
+
+        // API
+        services.AddSingleton(new ApiSettings());
+        services.AddSingleton<ApiClient>();
+
+        // ViewModels
+        services.AddSingleton<LoginViewModel>();
+        services.AddSingleton<RecordingViewModel>();
         services.AddSingleton<MainWindowViewModel>();
     }
 }

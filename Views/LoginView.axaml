@@ -1,0 +1,76 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Input.ViewModels"
+             x:Class="Input.Views.LoginView"
+             x:DataType="vm:LoginViewModel">
+
+    <Grid Background="{DynamicResource Bone}">
+
+        <StackPanel Width="304"
+                    VerticalAlignment="Center"
+                    Margin="0,0,0,28">
+
+            <!-- Wordmark da marca -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,40">
+                <TextBlock Classes="wordmark"
+                           Text="Input"
+                           Foreground="{DynamicResource Ink}" />
+                <TextBlock Classes="wordmark-dot" Text="." />
+            </StackPanel>
+
+            <TextBlock Classes="eyebrow"
+                       Text="BEM-VINDO DE VOLTA"
+                       Margin="0,0,0,10" />
+
+            <TextBlock Classes="title"
+                       Text="Acesse sua conta"
+                       Margin="0,0,0,28" />
+
+            <!-- E-mail -->
+            <TextBlock Classes="label" Text="E-mail" Margin="0,0,0,7" />
+            <TextBox Text="{Binding Email}"
+                     PlaceholderText="seu@email.com"
+                     Margin="0,0,0,18">
+                <TextBox.KeyBindings>
+                    <KeyBinding Gesture="Enter" Command="{Binding LoginCommand}" />
+                </TextBox.KeyBindings>
+            </TextBox>
+
+            <!-- Senha -->
+            <TextBlock Classes="label" Text="Senha" Margin="0,0,0,7" />
+            <TextBox Text="{Binding Password}"
+                     PasswordChar="●"
+                     PlaceholderText="Sua senha"
+                     Margin="0,0,0,22">
+                <TextBox.KeyBindings>
+                    <KeyBinding Gesture="Enter" Command="{Binding LoginCommand}" />
+                </TextBox.KeyBindings>
+            </TextBox>
+
+            <Button Classes="primary"
+                    Content="Entrar"
+                    Command="{Binding LoginCommand}"
+                    HorizontalAlignment="Stretch" />
+
+            <!-- Só aparece durante a requisição de login. -->
+            <ProgressBar Classes="thin"
+                         IsIndeterminate="True"
+                         Margin="0,12,0,0"
+                         IsVisible="{Binding IsBusy}" />
+
+            <!-- Erro vindo da API -->
+            <Border Background="{DynamicResource DangerSoft}"
+                    CornerRadius="8"
+                    Padding="12,10"
+                    Margin="0,16,0,0"
+                    IsVisible="{Binding StatusText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                <TextBlock Text="{Binding StatusText}"
+                           Foreground="{DynamicResource Danger}"
+                           FontSize="12.5"
+                           TextWrapping="Wrap" />
+            </Border>
+
+        </StackPanel>
+    </Grid>
+
+</UserControl>
