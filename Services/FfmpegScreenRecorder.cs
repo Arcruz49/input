@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Input.Services;
@@ -17,7 +18,7 @@ public sealed class FfmpegScreenRecorder : IScreenRecorder
 
         _process = new Process
         {
-            StartInfo = new ProcessStartInfo("ffmpeg", args)
+            StartInfo = new ProcessStartInfo(ResolveFfmpegPath(), args)
             {
                 RedirectStandardInput = true,
                 RedirectStandardError = true,
@@ -26,7 +27,10 @@ public sealed class FfmpegScreenRecorder : IScreenRecorder
             }
         };
 
+        _process.ErrorDataReceived += (_, _) => { };
+
         _process.Start();
+        _process.BeginErrorReadLine();
     }
 
     public async Task StopAsync()
@@ -36,9 +40,24 @@ public sealed class FfmpegScreenRecorder : IScreenRecorder
         await _process.StandardInput.WriteLineAsync("q");
         await _process.StandardInput.FlushAsync();
 
-        await _process.WaitForExitAsync();
+        var waitForExit = _process.WaitForExitAsync();
+        await Task.WhenAny(waitForExit, Task.Delay(TimeSpan.FromSeconds(5)));
+
+        if (!_process.HasExited)
+            _process.Kill(entireProcessTree: true);
+
         _process.Dispose();
         _process = null;
+    }
+
+    private static string ResolveFfmpegPath()
+    {
+        var relativePath = OperatingSystem.IsWindows()
+            ? Path.Combine("Tools", "ffmpeg", "win-x64", "ffmpeg.exe")
+            : Path.Combine("Tools", "ffmpeg", "linux-x64", "ffmpeg");
+
+        var bundledPath = Path.Combine(AppContext.BaseDirectory, relativePath);
+        return File.Exists(bundledPath) ? bundledPath : "ffmpeg";
     }
 
     private static string BuildFfmpegArgs(string outputPath)

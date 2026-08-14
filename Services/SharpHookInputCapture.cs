@@ -34,7 +34,6 @@ public sealed class SharpHookInputCapture : IInputCapture, IDisposable
 
     public void Start()
     {
-        // RunAsync roda o hook em background e retorna imediatamente.
         _ = _hook.RunAsync();
     }
 
@@ -51,8 +50,6 @@ public sealed class SharpHookInputCapture : IInputCapture, IDisposable
             KeyOrButton = keyOrButton,
             X = x,
             Y = y
-            // SessionId e OffsetMs ficam de fora de propósito — quem preenche é o
-            // RecordingOrchestrator, porque só ele sabe a sessão atual e o Stopwatch.
         });
     }
 
