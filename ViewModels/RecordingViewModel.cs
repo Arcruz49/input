@@ -13,9 +13,6 @@ public partial class RecordingViewModel : ViewModelBase
 {
     private readonly RecordingOrchestrator _orchestrator;
     private readonly ApiClient _api;
-
-    // Cronômetro da tela: o offset dos eventos continua sendo o do
-    // orchestrator, este relógio é só pra exibição.
     private readonly Stopwatch _clock = new();
     private readonly DispatcherTimer _ticker;
 
@@ -58,8 +55,8 @@ public partial class RecordingViewModel : ViewModelBase
 
     /// <summary>Dica logo abaixo do botão redondo.</summary>
     public string HintText =>
-        IsRecording ? "Clique pra parar a gravação"
-        : "Clique pra começar a gravar a tela";
+        IsRecording ? "Clique para parar a gravação"
+        : "Clique para começar a gravar a tela";
 
     public RecordingViewModel(RecordingOrchestrator orchestrator, ApiClient api)
     {
@@ -116,7 +113,7 @@ public partial class RecordingViewModel : ViewModelBase
             await _orchestrator.StopAsync();
             IsRecording = false;
             HasRecordingToSend = true;
-            SetStatus("Dê um nome ao projeto pra enviar a gravação.");
+            SetStatus("Dê um nome ao projeto para enviar a gravação.");
         }
         catch (Exception ex)
         {
@@ -138,7 +135,7 @@ public partial class RecordingViewModel : ViewModelBase
 
         if (videoPath is null || eventsPath is null)
         {
-            SetStatus("Nenhuma gravação pra enviar.", isError: true);
+            SetStatus("Nenhuma gravação para enviar.", isError: true);
             return;
         }
 
@@ -149,7 +146,7 @@ public partial class RecordingViewModel : ViewModelBase
         }
 
         IsSending = true;
-        SetStatus("Enviando pra API...");
+        SetStatus("Enviando para API...");
         try
         {
             await _api.UploadRecordingAsync(ProjectName, videoPath, eventsPath);

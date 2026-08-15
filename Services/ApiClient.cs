@@ -57,7 +57,6 @@ public sealed class ApiClient : IDisposable
 
         form.Add(new StringContent(projectName), "projectName");
 
-        // Abre os arquivos como stream — nada é carregado inteiro em memória.
         await using var videoStream = File.OpenRead(videoPath);
         await using var eventsStream = File.OpenRead(eventsPath);
 

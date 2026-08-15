@@ -11,7 +11,6 @@ public sealed class InputEvent
 
     public string? KeyOrButton { get; set; }
 
-    // posicionamento mouse
     public int? X { get; set; }
     public int? Y { get; set; }
 }

@@ -10,7 +10,6 @@
                     VerticalAlignment="Center"
                     Margin="0,0,0,28">
 
-            <!-- Wordmark da marca -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,40">
                 <TextBlock Classes="wordmark"
                            Text="Input"
@@ -26,7 +25,6 @@
                        Text="Acesse sua conta"
                        Margin="0,0,0,28" />
 
-            <!-- E-mail -->
             <TextBlock Classes="label" Text="E-mail" Margin="0,0,0,7" />
             <TextBox Text="{Binding Email}"
                      PlaceholderText="seu@email.com"
@@ -36,7 +34,6 @@
                 </TextBox.KeyBindings>
             </TextBox>
 
-            <!-- Senha -->
             <TextBlock Classes="label" Text="Senha" Margin="0,0,0,7" />
             <TextBox Text="{Binding Password}"
                      PasswordChar="●"
@@ -52,13 +49,11 @@
                     Command="{Binding LoginCommand}"
                     HorizontalAlignment="Stretch" />
 
-            <!-- Só aparece durante a requisição de login. -->
             <ProgressBar Classes="thin"
                          IsIndeterminate="True"
                          Margin="0,12,0,0"
                          IsVisible="{Binding IsBusy}" />
 
-            <!-- Erro vindo da API -->
             <Border Background="{DynamicResource DangerSoft}"
                     CornerRadius="8"
                     Padding="12,10"
